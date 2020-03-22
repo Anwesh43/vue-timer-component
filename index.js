@@ -1,5 +1,5 @@
-Vue.component('TimerComponent', {
-    template : '<div>{hours}:{minutes}:{seconds}</div>',
+Vue.component('timer', {
+    template : '<div :style = "timerStyle">{{hours}}:{{minutes}}:{{seconds}}</div>',
 
     data() {
         var i = 0
@@ -26,7 +26,16 @@ Vue.component('TimerComponent', {
         hours() {
             const h = Math.floor(this.i / 3600)
             return h < 10 ? `0${h}` : h
+        },
+
+        timerStyle() {
+            const fontSize = `${Math.min(window.innerWidth, window.innerHeight) / 7}`
+            const textAlign = 'center'
+            return {fontSize, textAlign}
         }
     }
+})
 
+const vue = new Vue({
+    el : '#app'
 })
